@@ -1,4 +1,4 @@
-![image](image.png)
+![image](./Images/image.png)
 
 # MercadoLibre Net Prophet Forecasting
 
