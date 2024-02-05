@@ -69,7 +69,7 @@ else:
 
 **Answer:** Yes, there was a search traffic increase on May 5 (between 119-125) while the other days maintained a cyclical pattern.
 
-![May Trends](Images\May-Search-Trends.png)
+![May Trends](./Images/May-Search-Trends.png)
 
 ## Step 2: Mine the Search Traffic Data for Seasonality
 The marketing department realizes that they can use the hourly search data, too. If they can track and predict interest in the company and its platform for any time of day, they can focus their marketing efforts around the times that have the most traffic. This will get a greater return on investment (ROI) from their marketing budget.
@@ -82,7 +82,7 @@ To that end, you want to mine the search traffic data for predictable seasonal p
 hourly_search = df_mercado_trends['Search trends'].groupby(by=[df_mercado_trends.index.dayofweek]).mean()
 hourly_search.hvplot(title = 'Average Search Traffic by Day of the Week')
 ```
-![Avg Search Weekly](Images\Average-Search-Traffic.png)
+![Avg Search Weekly](./Images/Average-Search-Traffic.png)
 
     2. Using hvPlot, visualize this traffic as a heatmap, referencing index.hour for the x-axis and index.dayofweek for the y-axis. 
         ** Does any day-of-week effect that you observe concentrate in just a few hours of that day?
@@ -96,7 +96,7 @@ df_mercado_trends.hvplot.heatmap(
     title = 'Average Search Traffic by the hour of the day'
 ).aggregate(function=np.mean)
 ```
-![Heatmap](Images\Heatmap-hourly.png)
+![Heatmap](./Images/Heatmap-hourly.png)
 ##### Answer the following question:
 
 **Question:** Does any day-of-week effect that you observe concentrate in just a few hours of that day?
@@ -110,7 +110,7 @@ df_mercado_trends.hvplot.heatmap(
 hourly_search_yearly = df_mercado_trends.index.isocalendar().week
 df_mercado_trends.groupby(by=hourly_search_yearly).mean().hvplot(title='Average Search Traffic by Week of the Year')
 ```
-![Hourly_Search_Traffic](Images\avg-search-yearly.png)
+![Hourly_Search_Traffic](./Images/avg-search-yearly.png)
 
 ##### Answer the following question:
 
@@ -140,7 +140,7 @@ df_mercado_stock.hvplot(title= 'Mercado Stock Closing Price')
 # Concatenate the DataFrame by columns (axis=1), and drop and rows with only one column of data
 mercado_stock_trends_df =pd.concat([df_mercado_stock, df_mercado_trends], axis= 1).dropna()
 ```
-![ClosingPrice](Images\closing-price.png)
+![ClosingPrice](./Images/closing-price.png)
 
     2. Note that market events emerged during 2020 that many companies found difficult. But after the initial shock to global financial markets, new customers and revenue increased for e-commerce platforms. So, slice the data to just the first half of 2020 (2020-01 to 2020-06 in the DataFrame), and then use hvPlot to plot the data. Do both time series indicate a common trend that’s consistent with this narrative?
 ```python
@@ -155,7 +155,7 @@ first_half_2020.hvplot(
     subplots = True,
 ).cols(1)
 ```
-![Close Price & Search Trends](Images\close-&-search-trends.png)
+![Close Price & Search Trends](./Images/close-&-search-trends.png)
 
 ##### Answer the following questions:
 
@@ -187,9 +187,9 @@ mercado_stock_trends_df['Hourly Stock Return'] = mercado_stock_trends_df['close'
 # Construct correlation table of Stock Volatility, Lagged Search Trends, and Hourly Stock Return
 mercado_stock_trends_df [[ 'Stock Volatility','Lagged Search Trends', 'Hourly Stock Return']].corr()
 ```
-![Stock Volatility](Images\volatility.png)
+![Stock Volatility](./Images/volatility.png)
 
-![corr_table](Images\correlation.png)
+![corr_table](./Images/correlation.png)
 
     4. Review the time series correlation, and then answer the following question: Does a predictable relationship exist between the lagged search traffic and the stock volatility or between the lagged search traffic and the stock price returns?
 
@@ -229,9 +229,9 @@ forecast_mercado_trends = model_mercado_trends.predict(future_mercado_trends)
 # Plot the Prophet predictions for the Mercado trends data
 model_mercado_trends.plot(forecast_mercado_trends)
 ```
-![forecasttrends](Images\forecast.png)
+![forecasttrends](./Images/forecast.png)
 
-![forecasttrends](Images\forecast-1.png)
+![forecasttrends](./Images/forecast-1.png)
     2. After estimating the model, plot the forecast. How's the near-term forecast for the popularity of MercadoLibre?
 
 ##### Answer the following question:
@@ -259,9 +259,9 @@ forecast_mercado_trends = forecast_mercado_trends.reset_index()
 # for the forecast_canada DataFrame 
 figures_mercado_trends = model_mercado_trends.plot_components(forecast_mercado_trends)
 ```
-![2000hours](Images\yhat.png)
+![2000hours](./Images/yhat.png)
 
-![model_mercado_trends](Images\model.png)
+![model_mercado_trends](./Images/model.png)
 
 ##### Answer the following questions:
 
@@ -322,7 +322,7 @@ mercado_sales_prophet_future = mercado_sales_prophet_model.make_future_dataframe
 # Make predictions for the sales each day over the next quarter
 mercado_sales_prophet_forecast = mercado_sales_prophet_model.predict(mercado_sales_prophet_future)
 ```
-![mercado_revenue](Images\mercado-revenue.png)
+![mercado_revenue](./Images/mercado-revenue.png)
 
     2. Interpret the model output to identify any seasonal patterns in the company revenue. For example, what are the peak revenue days? (Mondays? Fridays? Something else?)
 
@@ -330,7 +330,7 @@ mercado_sales_prophet_forecast = mercado_sales_prophet_model.predict(mercado_sal
 # Use the plot_components function to analyze seasonal patterns in the company's revenue
 figures_mercado_rev = mercado_sales_prophet_model.plot_components(mercado_sales_prophet_forecast)
 ```
-![salesforecast](Images\sales-forecast.png)
+![salesforecast](./Images/sales-forecast.png)
 
 ##### Answer the following question:
 
@@ -365,11 +365,11 @@ mercado_sales_forecast_quarter = mercado_sales_forecast_quarter.rename(
 # Display the summed values for all the rows in the forecast_quarter DataFrame
 mercado_sales_forecast_quarter.sum()
 ```
-![sum](Images\sum-total.png)
+![sum](./Images/sum-total.png)
 
-![mercado-s-forecast](Images\s-prediction-forecast.png)
+![mercado-s-forecast](./Images/s-prediction-forecast.png)
 
-![mercado-s-forecast](Images\s-prediction-forecast-2.png)
+![mercado-s-forecast](./Images/s-prediction-forecast-2.png)
 
 ### Based on the forecast information generated above, produce a sales forecast for the finance division, giving them a number for expected total sales next quarter. Include best and worst case scenarios, to better help the finance team plan.
 
